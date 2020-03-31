@@ -38,6 +38,7 @@ public class ListController {
     public String list(Model model) {
         model.addAttribute("columns", columnChoices);
         model.addAttribute("tableChoices", tableChoices);
+
         model.addAttribute("employers", JobData.getAllEmployers());
         model.addAttribute("locations", JobData.getAllLocations());
         model.addAttribute("positions", JobData.getAllPositionTypes());
@@ -46,7 +47,8 @@ public class ListController {
         return "list";
     }
 
-    @RequestMapping(value = "jobs")
+    @RequestMapping
+            (value = "jobs")
     public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
         ArrayList<Job> jobs;
         if (column.toLowerCase().equals("all")){
